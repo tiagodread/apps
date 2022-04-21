@@ -1,3 +1,4 @@
+![Vercel](https://vercelbadge.vercel.app/api/tiagodread/apps)
 # Miscellaneous Apps
 
 Collection of small applications built using [React](https://pt-br.reactjs.org/) and [Create React App](https://github.com/facebook/create-react-app) for study purpose. 
