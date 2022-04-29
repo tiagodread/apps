@@ -8,7 +8,7 @@ Collection of small applications built using [React](https://pt-br.reactjs.org/)
 You can access the deployed project on [Vercel](https://misc-apps.vercel.app/)
 
 
-## Installing
+## Installin
 
 Pre requisites:
 - Docker
