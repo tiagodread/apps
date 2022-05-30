@@ -24,12 +24,30 @@ module.exports.queryString = (obj) => {
 
 module.exports.queryStringToObject = (query) => {
     let obj = {};
-    query.slice(1).split("&").forEach(item => { 
+
+    if (query === undefined) {
+        throw new Error("Invalid query string");
+    } else if (query.length === 0) {
+        throw new Error("Invalid query string");
+    } else if (query.charAt(0) !== "?") {
+        throw new Error("Invalid query string");
+    } else if (query.charAt(query.length - 1) === "&") {
+        throw new Error("Invalid query string");
+    } 
+    
+
+    query.slice(1).split("&").forEach(item => {
         let [key, value] = item.split("=");
-        if(value.includes(",")) {
+        if (value.includes(",")) {
             value = value.split(",");
+            obj[key] = value;
         }
-        obj[key] = value;
+        
+        else if (value == undefined || value.length === 0) {
+            obj[key] = undefined
+        } else {
+            obj[key] = decodeURIComponent(value);    
+        }        
     })
     return obj;
 }
