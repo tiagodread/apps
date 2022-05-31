@@ -38,16 +38,11 @@ module.exports.queryStringToObject = (query) => {
 
     query.slice(1).split("&").forEach(item => {
         let [key, value] = item.split("=");
+        value === undefined || value.length === 0 ? obj[key] = undefined : obj[key] = decodeURIComponent(value);
         if (value.includes(",")) {
             value = value.split(",");
             obj[key] = value;
-        }
-        
-        else if (value == undefined || value.length === 0) {
-            obj[key] = undefined
-        } else {
-            obj[key] = decodeURIComponent(value);    
-        }        
+        }       
     })
     return obj;
 }

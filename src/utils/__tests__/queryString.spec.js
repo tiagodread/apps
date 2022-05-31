@@ -20,6 +20,17 @@ describe('Object to query String', () => {
         expect(queryString(obj)).toBe("?name=Tiago&age=28&country=Brazil&sports=crossfit,taekwondo")
     });
 
+    it('Should create a valid query string when the object passed contains more than one value and one of them is empty', () => { 
+         const obj = {
+            name: "Tiago",
+            age: "28",
+            country: "Brazil",
+            sports: ['crossfit', '']
+         }
+        expect(queryString(obj)).toBe("?name=Tiago&age=28&country=Brazil&sports=crossfit,")
+    });
+
+
     it('Should create a valid query string when the object contains empty values or undefined', () => { 
            const obj = {
             name: "Tiago",
