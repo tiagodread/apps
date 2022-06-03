@@ -1,15 +1,7 @@
-.exchange {
-    align-items: center;
-    padding: 20px;
-    max-width: 300px;
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.25);
-    margin: 0 auto;
-    justify-content: center;
-    width: 100%;
-}
-
-.exchange-header{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+/* Align exchange-container to the center of the screen */
+.exchange-container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }

@@ -1,0 +1,42 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`FromCurrency Should match the snapshot 1`] = `
+<div>
+  <select
+    aria-label="Select from currency"
+    class="form-select"
+    data-testid="from-currency"
+  >
+    <option
+      value="EUR"
+    >
+      EUR
+    </option>
+    <option
+      value="USD"
+    >
+      USD
+    </option>
+    <option
+      value="GBP"
+    >
+      GBP
+    </option>
+    <option
+      value="JPY"
+    >
+      JPY
+    </option>
+    <option
+      value="BRL"
+    >
+      BRL
+    </option>
+    <option
+      value="CAD"
+    >
+      CAD
+    </option>
+  </select>
+</div>
+`;

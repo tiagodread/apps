@@ -1,79 +1,152 @@
-import React from 'react';
+import { React, useState } from 'react';
+import { Button, Container, Row, Form, Col, Alert } from 'react-bootstrap';
+import PropTypes from 'prop-types';
 import './Exchange.css';
 
-export default class Exchange extends React.Component {
-  constructor(props){
-      super(props);
-      this.state = {
-          fromCurrency: this.props.fromCurrency,
-          toCurrency: this.props.toCurrency,
-          value: undefined,
-          convertedValue: undefined,
-          exchangeRate: undefined
-      }
-      this.convert = this.convert.bind(this);
-      this.handleChangeFrom = this.handleChangeFrom.bind(this);
-      this.handleChangeTo = this.handleChangeTo.bind(this);
+
+function Exchange(props) {
+  const [fromCurrency, setFromCurrency] = useState(props.fromCurrency);
+  const [toCurrency, setToCurrency] = useState(props.toCurrency);
+  const [value, setValue] = useState(undefined);
+  const [convertedValue, setConvertedValue] = useState('');
+  const [exchangeRate, setExchangeRate] = useState('');
+  const [showResults, setShowResults] = useState(false)
+
+  const handleChangeFrom = (event) => {
+    setFromCurrency(event.target.value);
   }
 
-  handleChangeFrom(event){
-      this.setState({fromCurrency: event.target.value});
+  const handleChangeTo = (event) => {
+    setToCurrency(event.target.value);
   }
 
-  handleChangeTo(event){
-    this.setState({toCurrency: event.target.value});
-  } 
-
-  convert(){
-      if(this.state.value === undefined || this.state.value < 0){
-          alert("Please enter a valid value!");
-          return;
-      }
-      if (this.state.fromCurrency === this.state.toCurrency){
-          this.setState({convertedValue: this.state.value});
-      }
-      const apiKey = '7c478081950780fb862c'
-      let query = `${this.state.fromCurrency}_${this.state.toCurrency}`;
-      let url = `https://free.currconv.com/api/v7/convert?q=${query}&compact=ultra&apiKey=${apiKey}`;
-      fetch(url).then(response => response.json()).then(data => {
-          let exchangeRate = (parseFloat(data[query])).toFixed(4);
-          let convertedValue = (parseFloat(this.state.value * exchangeRate)).toFixed(2);
-          this.setState({exchangeRate: exchangeRate})
-          this.setState({convertedValue: convertedValue});
-      })
-      console.log(this.state);
+  const handleExchangeRate = (value) => {
+    setExchangeRate(value);
   }
 
-  render() {
-    return(
-      <div className="exchange">
-        <div className="exchange-header">
-        <p>FROM:</p>
-        <select id="from-currency" data-testid="from-currency" value={this.state.fromCurrency} onChange={this.handleChangeFrom}>
-            <option value="EUR">EUR</option>
-            <option value="USD">USD</option>
-            <option value="GBP">GBP</option>
-            <option value="JPY">JPY</option>
-            <option value="BRL">BRL</option>
-            <option value="CAD">CAD</option>
-        </select>
-        <p>TO:</p>
-        <select id="to-currency" data-testid="to-currency" value={this.state.toCurrency} onChange={this.handleChangeTo}>
-            <option value="USD">USD</option>
-            <option value="EUR">EUR</option>
-            <option value="GBP">GBP</option>
-            <option value="JPY">JPY</option>
-            <option value="BRL">BRL</option>
-            <option value="CAD">CAD</option>
-        </select>
-      </div>
-      
-      <input type="number" min="0" id="value" data-testid="enteredValue" placeholder={this.state.fromCurrency} onChange={(event) => {this.setState({value: event.target.value})}}/>
-      <input type="button" data-testid="convert" value="Convert" onClick={this.convert}/>
-      <h2 data-testid="converted-value">Converted value: {this.state.value == undefined ? 0 : this.state.convertedValue}</h2>
-        <p data-testid="exchange-rate">Exchange rate: {this.state.exchangeRate == undefined ? 0 : this.state.exchangeRate}</p>
-      </div>
-    )
+  const handleConvertedValue = (value) => {
+    setConvertedValue(value);
   }
+
+  const handleValue = (event) => {
+    setShowResults(false);
+    setValue(event.target.value);
+  }
+
+  const getExchangeRate = () => {
+    const apiKey = '7c478081950780fb862c'
+    let query = `${fromCurrency}_${toCurrency}`;
+    let url = `https://free.currconv.com/api/v7/convert?q=${query}&compact=ultra&apiKey=${apiKey}`;
+    fetch(url).then(response => response.json()).then(data => {
+      const exchangeRate = (parseFloat(data[query])).toFixed(4);
+      handleExchangeRate(exchangeRate);
+      const convertedValue = (parseFloat(value * exchangeRate)).toFixed(2);
+      handleConvertedValue(convertedValue);
+    })
+  }
+
+
+  const convert = () => {
+    if (value === undefined || value < 1) {
+      alert("Please enter a valid value!");
+      return;
+    }
+    if (fromCurrency === toCurrency) {
+      setConvertedValue(value);
+      return;
+    }
+    getExchangeRate()
+    setShowResults(true);
+  }
+
+  return (
+    <Container className="exchange-container">
+      <Row className="header">
+        <h1>💱 Currency Converter</h1>
+      </Row>
+      <Form>
+        <Form.Group className="mb-3" >
+          <Row className="exchange-form-from">
+            <Col sm={5}>
+              <Form.Label>From Currency</Form.Label>
+            </Col>
+            <Col sm={5}>
+              <Form.Select aria-label="Select from currency" data-testid="from-currency" value={fromCurrency} onChange={handleChangeFrom}>
+                <option value="EUR">EUR</option>
+                <option value="USD">USD</option>
+                <option value="GBP">GBP</option>
+                <option value="JPY">JPY</option>
+                <option value="BRL">BRL</option>
+                <option value="CAD">CAD</option>
+              </Form.Select>
+            </Col>
+          </Row>
+        </Form.Group>
+
+        <Form.Group className="mb-3" controlId="to">
+          <Row className="exchange-form-to">
+            <Col sm={5}>
+              <Form.Label>To Currency</Form.Label>
+            </Col>
+            <Col sm={5}>
+              <Form.Select aria-label="Select to currency" data-testid="to-currency" value={toCurrency} onChange={handleChangeTo}>
+                <option value="EUR">EUR</option>
+                <option value="USD">USD</option>
+                <option value="GBP">GBP</option>
+                <option value="JPY">JPY</option>
+                <option value="BRL">BRL</option>
+                <option value="CAD">CAD</option>
+              </Form.Select>
+            </Col>
+          </Row>
+        </Form.Group>
+
+        <Form.Group className="mb-3" controlId="from">
+          <Row className="exchange-form-from">
+            <Col sm={5}>
+              <Form.Label>Amount</Form.Label>
+            </Col>
+            <Col sm={5}>
+              <Form.Control
+                type="number"
+                data-testid="enteredValue"
+                min={0}
+                placeholder={`value in ${fromCurrency} format`}
+                onChange={(event) => handleValue(event)}
+                required={true}
+              />
+            </Col>
+          </Row>
+        </Form.Group>
+        <Button variant="primary" data-testid="convert" value="convert" onClick={convert}>Convert</Button>{' '}
+      </Form>
+
+      {showResults ?
+        <Container className="exchange-result">
+          <Alert variant="light">
+            <Alert.Heading>Success</Alert.Heading>
+            <p>{value} {fromCurrency} = {convertedValue} {toCurrency}</p>
+            <hr />
+            <p className="mb-0">
+              Exchange Rate: {exchangeRate}
+            </p>
+          </Alert>
+        </Container>
+        : null}
+
+
+    </Container>
+  )
 }
-    
+
+Exchange.propTypes = {
+  fromCurrency: PropTypes.string,
+  toCurrency: PropTypes.string,
+};
+
+Exchange.defaultProps = {
+  fromCurrency: 'BRL',
+  toCurrency: 'USD',
+};
+
+export default Exchange;
