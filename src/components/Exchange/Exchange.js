@@ -110,7 +110,7 @@ function Exchange(props) {
               <Form.Control
                 type="number"
                 data-testid="enteredValue"
-                min={0}
+                min={1}
                 placeholder={`value in ${fromCurrency} format`}
                 onChange={(event) => handleValue(event)}
                 required={true}
@@ -122,7 +122,7 @@ function Exchange(props) {
       </Form>
 
       {showResults ?
-        <Container className="exchange-result">
+        <Container className="exchange-results" data-testid="exchange-result">
           <Alert variant="light">
             <Alert.Heading>Success</Alert.Heading>
             <p>{value} {fromCurrency} = {convertedValue} {toCurrency}</p>

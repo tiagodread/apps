@@ -1,0 +1,177 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Exchange Should match the snapshot 1`] = `
+<div>
+  <div
+    class="exchange-container container"
+  >
+    <div
+      class="header row"
+    >
+      <h1>
+        💱 Currency Converter
+      </h1>
+    </div>
+    <form
+      class=""
+    >
+      <div
+        class="mb-3"
+      >
+        <div
+          class="exchange-form-from row"
+        >
+          <div
+            class="col-sm-5"
+          >
+            <label
+              class="form-label"
+            >
+              From Currency
+            </label>
+          </div>
+          <div
+            class="col-sm-5"
+          >
+            <select
+              aria-label="Select from currency"
+              class="form-select"
+              data-testid="from-currency"
+            >
+              <option
+                value="EUR"
+              >
+                EUR
+              </option>
+              <option
+                value="USD"
+              >
+                USD
+              </option>
+              <option
+                value="GBP"
+              >
+                GBP
+              </option>
+              <option
+                value="JPY"
+              >
+                JPY
+              </option>
+              <option
+                value="BRL"
+              >
+                BRL
+              </option>
+              <option
+                value="CAD"
+              >
+                CAD
+              </option>
+            </select>
+          </div>
+        </div>
+      </div>
+      <div
+        class="mb-3"
+      >
+        <div
+          class="exchange-form-to row"
+        >
+          <div
+            class="col-sm-5"
+          >
+            <label
+              class="form-label"
+              for="to"
+            >
+              To Currency
+            </label>
+          </div>
+          <div
+            class="col-sm-5"
+          >
+            <select
+              aria-label="Select to currency"
+              class="form-select"
+              data-testid="to-currency"
+              id="to"
+            >
+              <option
+                value="EUR"
+              >
+                EUR
+              </option>
+              <option
+                value="USD"
+              >
+                USD
+              </option>
+              <option
+                value="GBP"
+              >
+                GBP
+              </option>
+              <option
+                value="JPY"
+              >
+                JPY
+              </option>
+              <option
+                value="BRL"
+              >
+                BRL
+              </option>
+              <option
+                value="CAD"
+              >
+                CAD
+              </option>
+            </select>
+          </div>
+        </div>
+      </div>
+      <div
+        class="mb-3"
+      >
+        <div
+          class="exchange-form-from row"
+        >
+          <div
+            class="col-sm-5"
+          >
+            <label
+              class="form-label"
+              for="from"
+            >
+              Amount
+            </label>
+          </div>
+          <div
+            class="col-sm-5"
+          >
+            <input
+              class="form-control"
+              data-testid="enteredValue"
+              id="from"
+              min="1"
+              placeholder="value in BRL format"
+              required=""
+              type="number"
+            />
+          </div>
+        </div>
+      </div>
+      <button
+        class="btn btn-primary"
+        data-testid="convert"
+        type="button"
+        value="convert"
+      >
+        Convert
+      </button>
+       
+    </form>
+  </div>
+</div>
+`;
