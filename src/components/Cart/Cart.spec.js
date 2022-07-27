@@ -1,23 +1,52 @@
-import Cart from './Cart'
+import Cart from "./Cart";
 
-describe('Cart', () => {
-    it('Should return 0 from getTotal when a new cart is created', () => {
-        const cart = new Cart();
-        expect(cart.getTotal()).toEqual(0)
-    })
+describe("Cart", () => {
+  let cart;
+  let productBase;
 
-    it('Should multiply the product price and quantity to obtain the total', () => {
-        const cart = new Cart();
+  beforeEach(() => {
+    cart = new Cart();
+    productBase = {
+      product: {
+        name: "Macbook Pro",
+        price: 12569,
+      },
+      quantity: 2,
+    };
+  });
 
-        const item = {
-            product:{
-                name: 'Macbook Pro',
-                price: 10000
-            },
-            quantity: 2
-        }
+  afterEach(() => {
+    cart = undefined;
+  });
 
-        cart.add(item);
-        expect(cart.getTotal()).toEqual(20000)
-    })
-})
+  it("Should return 0 from getTotalCart when a new cart is created", () => {
+    expect(cart.getTotalCart()).toEqual(0);
+  });
+
+  it("Should multiply the product price and quantity to obtain the total", () => {
+    cart.add(productBase);
+    expect(cart.getTotalCart()).toEqual(25138);
+  });
+
+  it("Should multiply the product price and quantity to obtain the total even for duplicated products", () => {
+    cart.add(productBase);
+    cart.add({
+      product: {
+        name: "Macbook Pro",
+        price: 12569,
+      },
+      quantity: 1,
+    });
+    expect(cart.getTotalCart()).toEqual(37707);
+    expect(cart.getItemQuantity(productBase)).toEqual(3);
+  });
+
+  it("Should ensure one product exists at a time", () => {
+    cart.add(productBase);
+    expect(cart.getItemQuantity(productBase)).toEqual(2);
+    cart.add(productBase);
+    expect(cart.getItemQuantity(productBase)).toEqual(4);
+    expect(cart.getTotalCart()).toEqual(50276);
+    expect(cart.getCart()).toEqual([productBase]);
+  });
+});
