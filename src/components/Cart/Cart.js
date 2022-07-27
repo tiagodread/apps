@@ -12,8 +12,6 @@ export default class Cart {
 
   getTotalCart() {
     return this.items.reduce((acc, item) => {
-      console.log(item);
-      console.log(item.quantity);
       const amount = Money({ amount: item.quantity * item.product.price });
       let discount = Money({ amount: 0 });
 
