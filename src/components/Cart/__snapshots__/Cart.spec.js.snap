@@ -1,0 +1,59 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Cart Checkout Should return an object with items and total 1`] = `
+Object {
+  "items": Array [
+    Object {
+      "product": Object {
+        "name": "Macbook Pro",
+        "price": 12569,
+      },
+      "quantity": 2,
+    },
+    Object {
+      "product": Object {
+        "name": "Iphone 13 Pro",
+        "price": 6599,
+      },
+      "quantity": 2,
+    },
+    Object {
+      "product": Object {
+        "name": "Apple Watch Series 7",
+        "price": 5022,
+      },
+      "quantity": 5,
+    },
+  ],
+  "total": 63446,
+}
+`;
+
+exports[`Cart Checkout Should return an object with items and total 2`] = `
+Object {
+  "items": Array [
+    Object {
+      "product": Object {
+        "name": "Macbook Pro",
+        "price": 12569,
+      },
+      "quantity": 2,
+    },
+    Object {
+      "product": Object {
+        "name": "Iphone 13 Pro",
+        "price": 6599,
+      },
+      "quantity": 2,
+    },
+    Object {
+      "product": Object {
+        "name": "Apple Watch Series 7",
+        "price": 5022,
+      },
+      "quantity": 5,
+    },
+  ],
+  "total": 63446,
+}
+`;

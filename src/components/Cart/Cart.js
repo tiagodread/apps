@@ -1,13 +1,19 @@
 import { findIndex } from "lodash";
 import find from "lodash/find";
+import { remove } from "lodash";
+import Dinero from "dinero.js";
+
+const Money = Dinero;
+Money.defaultCurrency = "BRL";
+Money.defaultPrecision = 2;
 
 export default class Cart {
   items = [];
 
   getTotalCart() {
     return this.items.reduce((acc, item) => {
-      return acc + item.quantity * item.product.price;
-    }, 0);
+      return acc.add(Money({ amount: item.quantity * item.product.price }));
+    }, Money({ amount: 0 }));
   }
 
   getItemQuantity(item) {
@@ -15,6 +21,7 @@ export default class Cart {
     if (productIndex != undefined) {
       return this.items[productIndex].quantity;
     }
+    return 0;
   }
 
   /**
@@ -31,6 +38,34 @@ export default class Cart {
     } else {
       this.items.push(item);
     }
+  }
+
+  remove(item) {
+    const productIndex = this.getCartItemIndex(item);
+    if (productIndex != undefined) {
+      remove(this.items, { product: item.product });
+    }
+  }
+
+  summary() {
+    const items = this.items;
+    const total = this.getTotalCart().getAmount();
+
+    return {
+      items,
+      total,
+    };
+  }
+
+  checkout() {
+    const { items, total } = this.summary();
+
+    this.items = [];
+
+    return {
+      items: items,
+      total: total,
+    };
   }
 
   getCart() {
