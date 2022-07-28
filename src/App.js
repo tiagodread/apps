@@ -1,30 +1,39 @@
-import NavCustom from "./components/NavCustom/NavCustom";
-import { Card, Button, Container, Row, Col } from "react-bootstrap";
+import ResponsiveAppBar from "./components/NavCustom/ResponsiveAppBar";
+import Container from "@mui/material/Container";
+import Grid from "@mui/material/Grid";
+import Card from "@mui/material/Card";
+import CardActions from "@mui/material/CardActions";
+import CardContent from "@mui/material/CardContent";
+import Button from "@mui/material/Button";
+import Typography from "@mui/material/Typography";
 
-import "./App.css";
+import "./App.css";  
 
 function App() {
   return (
     <div className="App">
-      <NavCustom />
-      <Container className="App-container">
-        <Row>
-          <Col xs>
-            <Card style={{ width: "18rem" }}>
-              <Card.Body>
-                <Card.Title>Currency Converter</Card.Title>
-                <Card.Text>
+      <ResponsiveAppBar></ResponsiveAppBar>
+      <Container maxWidth="sm" className="App-container">
+        <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
+          <Grid item xs={12}>
+            <Card sx={{ minWidth: 275 }}>
+              <CardContent>
+                <Typography variant="h5" component="div">
+                  Currency Converter
+                </Typography>
+
+                <Typography variant="body2">
                   Quickly convert currencies using the latest exchange rates.
-                </Card.Text>
-                <Button variant="primary" href="/currency-converter">
+                </Typography>
+              </CardContent>
+              <CardActions>
+                <Button size="small" href="/currency-converter">
                   Visit
                 </Button>
-              </Card.Body>
+              </CardActions>
             </Card>
-          </Col>
-          {/* <Col xs={{ order: 12 }}>Second, but last</Col>
-          <Col xs={{ order: 1 }}>Third, but second</Col> */}
-        </Row>
+          </Grid>
+        </Grid>
       </Container>
     </div>
   );
