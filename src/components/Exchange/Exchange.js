@@ -1,5 +1,11 @@
 import { React, useState } from "react";
-import { Button, Container, Row, Form, Col, Alert } from "react-bootstrap";
+// import { Button, Container, Row, Form, Col, Alert } from "react-bootstrap";
+import FormControl from "@mui/material/FormControl";
+import { Container } from "@mui/system";
+import { InputLabel, MenuItem } from "@mui/material";
+import Select from "@mui/material/Select";
+import TextField from "@mui/material/TextField";
+import { Button } from "@mui/material";
 import PropTypes from "prop-types";
 import "./Exchange.css";
 
@@ -61,12 +67,27 @@ function Exchange(props) {
 
   return (
     <Container className="exchange-container">
-      <Row className="header">
+      <div className="header">
         <h1>💱 Currency Converter</h1>
-      </Row>
-      <Form>
-        <Form.Group className="mb-3">
-          <Row className="exchange-form-from">
+      </div>
+      <form>
+        <div>
+          <FormControl fullWidth>
+            <InputLabel id="demo-simple-select-label">Age</InputLabel>
+            <Select
+              labelId="demo-simple-select-label"
+              id="demo-simple-select"
+              value={fromCurrency}
+              label="Age"
+              onChange={handleChangeFrom}
+            >
+              <MenuItem value={10}>Ten</MenuItem>
+              <MenuItem value={20}>Twenty</MenuItem>
+              <MenuItem value={30}>Thirty</MenuItem>
+            </Select>
+          </FormControl>
+
+          {/* <Row className="exchange-form-from">
             <Col sm={5}>
               <Form.Label>From Currency</Form.Label>
             </Col>
@@ -85,9 +106,9 @@ function Exchange(props) {
                 <option value="CAD">CAD</option>
               </Form.Select>
             </Col>
-          </Row>
-        </Form.Group>
-        <Form.Group className="mb-3" controlId="to">
+          </Row> */}
+        </div>
+        {/* <div className="mb-3" controlId="to">
           <Row className="exchange-form-to">
             <Col sm={5}>
               <Form.Label>To Currency</Form.Label>
@@ -108,8 +129,9 @@ function Exchange(props) {
               </Form.Select>
             </Col>
           </Row>
-        </Form.Group>
-        <Form.Group className="mb-3" controlId="from">
+        </div>
+
+        <div className="mb-3" controlId="from">
           <Row className="exchange-form-from">
             <Col sm={5}>
               <Form.Label>Amount</Form.Label>
@@ -125,7 +147,7 @@ function Exchange(props) {
               />
             </Col>
           </Row>
-        </Form.Group>
+        </div> */}
         <Button
           variant="primary"
           data-testid="convert"
@@ -134,9 +156,9 @@ function Exchange(props) {
         >
           Convert
         </Button>{" "}
-      </Form>
+      </form>
 
-      {showResults ? (
+      {/* {showResults ? (
         <Container className="exchange-results" data-testid="exchange-result">
           <Alert variant="light">
             <Alert.Heading>Success</Alert.Heading>
@@ -147,7 +169,7 @@ function Exchange(props) {
             <p className="mb-0">Exchange Rate: {exchangeRate}</p>
           </Alert>
         </Container>
-      ) : null}
+      ) : null} */}
     </Container>
   );
 }
