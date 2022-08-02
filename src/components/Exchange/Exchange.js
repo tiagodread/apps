@@ -1,11 +1,15 @@
 import { React, useState } from "react";
-// import { Button, Container, Row, Form, Col, Alert } from "react-bootstrap";
-import FormControl from "@mui/material/FormControl";
+import {
+  FormControl,
+  InputLabel,
+  MenuItem,
+  Select,
+  Input,
+  InputAdornment,
+  Alert,
+  Button,
+} from "@mui/material";
 import { Container } from "@mui/system";
-import { InputLabel, MenuItem } from "@mui/material";
-import Select from "@mui/material/Select";
-import TextField from "@mui/material/TextField";
-import { Button } from "@mui/material";
 import PropTypes from "prop-types";
 import "./Exchange.css";
 
@@ -16,6 +20,7 @@ function Exchange(props) {
   const [convertedValue, setConvertedValue] = useState("");
   const [exchangeRate, setExchangeRate] = useState("");
   const [showResults, setShowResults] = useState(false);
+  const [showErrors, setShowErrors] = useState(false);
 
   const handleChangeFrom = (event) => {
     setFromCurrency(event.target.value);
@@ -35,6 +40,7 @@ function Exchange(props) {
 
   const handleValue = (event) => {
     setShowResults(false);
+    setShowErrors(false);
     setValue(event.target.value);
   };
 
@@ -54,7 +60,7 @@ function Exchange(props) {
 
   const convert = () => {
     if (value === undefined || value < 1) {
-      alert("Please enter a valid value!");
+      setShowErrors(true);
       return;
     }
     if (fromCurrency === toCurrency) {
@@ -67,87 +73,66 @@ function Exchange(props) {
 
   return (
     <Container className="exchange-container">
-      <div className="header">
-        <h1>💱 Currency Converter</h1>
-      </div>
+      <h1>💱 Currency Converter</h1>
       <form>
         <div>
           <FormControl fullWidth>
-            <InputLabel id="demo-simple-select-label">Age</InputLabel>
+            <InputLabel id="exchange-form-from">From Currency</InputLabel>
             <Select
-              labelId="demo-simple-select-label"
-              id="demo-simple-select"
+              labelId="exchange-form-from"
+              id="exchange-form-from"
+              data-testid="from-currency"
               value={fromCurrency}
-              label="Age"
+              label="From Currency"
+              required={true}
               onChange={handleChangeFrom}
             >
-              <MenuItem value={10}>Ten</MenuItem>
-              <MenuItem value={20}>Twenty</MenuItem>
-              <MenuItem value={30}>Thirty</MenuItem>
+              <MenuItem value="EUR">EUR</MenuItem>
+              <MenuItem value="USD">USD</MenuItem>
+              <MenuItem value="GBP">GBP</MenuItem>
+              <MenuItem value="JPY">JPY</MenuItem>
+              <MenuItem value="BRL">BRL</MenuItem>
+              <MenuItem value="CAD">CAD</MenuItem>
             </Select>
+            <br />
           </FormControl>
 
-          {/* <Row className="exchange-form-from">
-            <Col sm={5}>
-              <Form.Label>From Currency</Form.Label>
-            </Col>
-            <Col sm={5}>
-              <Form.Select
-                aria-label="Select from currency"
-                data-testid="from-currency"
-                value={fromCurrency}
-                onChange={handleChangeFrom}
-              >
-                <option value="EUR">EUR</option>
-                <option value="USD">USD</option>
-                <option value="GBP">GBP</option>
-                <option value="JPY">JPY</option>
-                <option value="BRL">BRL</option>
-                <option value="CAD">CAD</option>
-              </Form.Select>
-            </Col>
-          </Row> */}
-        </div>
-        {/* <div className="mb-3" controlId="to">
-          <Row className="exchange-form-to">
-            <Col sm={5}>
-              <Form.Label>To Currency</Form.Label>
-            </Col>
-            <Col sm={5}>
-              <Form.Select
-                aria-label="Select to currency"
-                data-testid="to-currency"
-                value={toCurrency}
-                onChange={handleChangeTo}
-              >
-                <option value="EUR">EUR</option>
-                <option value="USD">USD</option>
-                <option value="GBP">GBP</option>
-                <option value="JPY">JPY</option>
-                <option value="BRL">BRL</option>
-                <option value="CAD">CAD</option>
-              </Form.Select>
-            </Col>
-          </Row>
-        </div>
+          <FormControl fullWidth>
+            <InputLabel id="exchange-form-to">To Currency</InputLabel>
+            <Select
+              labelId="exchange-form-to"
+              id="exchange-form-to"
+              data-testid="to-currency"
+              value={toCurrency}
+              label="To Currency"
+              onChange={handleChangeTo}
+              required={true}
+            >
+              <MenuItem value="EUR">EUR</MenuItem>
+              <MenuItem value="USD">USD</MenuItem>
+              <MenuItem value="GBP">GBP</MenuItem>
+              <MenuItem value="JPY">JPY</MenuItem>
+              <MenuItem value="BRL">BRL</MenuItem>
+              <MenuItem value="CAD">CAD</MenuItem>
+            </Select>
+            <br />
+          </FormControl>
 
-        <div className="mb-3" controlId="from">
-          <Row className="exchange-form-from">
-            <Col sm={5}>
-              <Form.Label>Amount</Form.Label>
-            </Col>
-            <Col sm={5}>
-              <Form.Control
-                type="number"
-                data-testid="enteredValue"
-                min={1}
-                placeholder={`value in ${fromCurrency} format`}
-                onChange={(event) => handleValue(event)}
-                required={true}
-              />
-            </Col>
-          </Row>
-        </div> */}
+          <FormControl fullWidth sx={{ m: 1 }} variant="outlined">
+            <InputLabel htmlFor="amount">Amount</InputLabel>
+            <Input
+              type="number"
+              id="amount"
+              data-testid="enteredValue"
+              placeholder={`value in ${fromCurrency} format`}
+              onChange={(event) => handleValue(event)}
+              required={true}
+              startAdornment={
+                <InputAdornment position="start">$</InputAdornment>
+              }
+            />
+          </FormControl>
+        </div>
         <Button
           variant="primary"
           data-testid="convert"
@@ -158,18 +143,31 @@ function Exchange(props) {
         </Button>{" "}
       </form>
 
-      {/* {showResults ? (
-        <Container className="exchange-results" data-testid="exchange-result">
-          <Alert variant="light">
-            <Alert.Heading>Success</Alert.Heading>
-            <p>
-              {value} {fromCurrency} = {convertedValue} {toCurrency}
-            </p>
-            <hr />
-            <p className="mb-0">Exchange Rate: {exchangeRate}</p>
-          </Alert>
-        </Container>
-      ) : null} */}
+      {showResults ? (
+        <Alert
+          variant="outlined"
+          severity="success"
+          className="exchange-results"
+          data-testid="exchange-result"
+        >
+          <p>
+            {value} {fromCurrency} = {convertedValue} {toCurrency}
+          </p>
+          <hr />
+          <p className="mb-0">Current exchange Rate: {exchangeRate}</p>
+        </Alert>
+      ) : null}
+
+      {showErrors ? (
+        <Alert
+          variant="outlined"
+          severity="error"
+          className="exchange-results"
+          data-testid="exchange-result"
+        >
+          <p>Please enter a valid value!</p>
+        </Alert>
+      ) : null}
     </Container>
   );
 }

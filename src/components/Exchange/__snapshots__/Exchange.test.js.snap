@@ -3,172 +3,182 @@
 exports[`Exchange Should match the snapshot 1`] = `
 <div>
   <div
-    class="exchange-container container"
+    class="MuiContainer-root MuiContainer-maxWidthLg exchange-container css-1oqqzyl-MuiContainer-root"
   >
-    <div
-      class="header row"
-    >
-      <h1>
-        💱 Currency Converter
-      </h1>
-    </div>
-    <form
-      class=""
-    >
-      <div
-        class="mb-3"
-      >
+    <h1>
+      💱 Currency Converter
+    </h1>
+    <form>
+      <div>
         <div
-          class="exchange-form-from row"
+          class="MuiFormControl-root MuiFormControl-fullWidth css-q8hpuo-MuiFormControl-root"
         >
-          <div
-            class="col-sm-5"
+          <label
+            class="MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-outlined MuiFormLabel-root MuiFormLabel-colorPrimary MuiFormLabel-filled css-1sumxir-MuiFormLabel-root-MuiInputLabel-root"
+            data-shrink="true"
+            id="exchange-form-from"
           >
-            <label
-              class="form-label"
+            From Currency
+          </label>
+          <div
+            class="MuiOutlinedInput-root MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-formControl  css-1yk1gt9-MuiInputBase-root-MuiOutlinedInput-root-MuiSelect-root"
+            data-testid="from-currency"
+            required=""
+          >
+            <div
+              aria-expanded="false"
+              aria-haspopup="listbox"
+              aria-labelledby="exchange-form-from exchange-form-from"
+              class="MuiSelect-select MuiSelect-outlined MuiOutlinedInput-input MuiInputBase-input css-11u53oe-MuiSelect-select-MuiInputBase-input-MuiOutlinedInput-input"
+              id="exchange-form-from"
+              role="button"
+              tabindex="0"
             >
-              From Currency
-            </label>
-          </div>
-          <div
-            class="col-sm-5"
-          >
-            <select
-              aria-label="Select from currency"
-              class="form-select"
-              data-testid="from-currency"
-            >
-              <option
-                value="EUR"
-              >
-                EUR
-              </option>
-              <option
-                value="USD"
-              >
-                USD
-              </option>
-              <option
-                value="GBP"
-              >
-                GBP
-              </option>
-              <option
-                value="JPY"
-              >
-                JPY
-              </option>
-              <option
-                value="BRL"
-              >
-                BRL
-              </option>
-              <option
-                value="CAD"
-              >
-                CAD
-              </option>
-            </select>
-          </div>
-        </div>
-      </div>
-      <div
-        class="mb-3"
-      >
-        <div
-          class="exchange-form-to row"
-        >
-          <div
-            class="col-sm-5"
-          >
-            <label
-              class="form-label"
-              for="to"
-            >
-              To Currency
-            </label>
-          </div>
-          <div
-            class="col-sm-5"
-          >
-            <select
-              aria-label="Select to currency"
-              class="form-select"
-              data-testid="to-currency"
-              id="to"
-            >
-              <option
-                value="EUR"
-              >
-                EUR
-              </option>
-              <option
-                value="USD"
-              >
-                USD
-              </option>
-              <option
-                value="GBP"
-              >
-                GBP
-              </option>
-              <option
-                value="JPY"
-              >
-                JPY
-              </option>
-              <option
-                value="BRL"
-              >
-                BRL
-              </option>
-              <option
-                value="CAD"
-              >
-                CAD
-              </option>
-            </select>
-          </div>
-        </div>
-      </div>
-      <div
-        class="mb-3"
-      >
-        <div
-          class="exchange-form-from row"
-        >
-          <div
-            class="col-sm-5"
-          >
-            <label
-              class="form-label"
-              for="from"
-            >
-              Amount
-            </label>
-          </div>
-          <div
-            class="col-sm-5"
-          >
+              BRL
+            </div>
             <input
-              class="form-control"
-              data-testid="enteredValue"
-              id="from"
-              min="1"
+              aria-hidden="true"
+              class="MuiSelect-nativeInput css-yf8vq0-MuiSelect-nativeInput"
+              required=""
+              tabindex="-1"
+              value="BRL"
+            />
+            <svg
+              aria-hidden="true"
+              class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium MuiSelect-icon MuiSelect-iconOutlined css-hfutr2-MuiSvgIcon-root-MuiSelect-icon"
+              data-testid="ArrowDropDownIcon"
+              focusable="false"
+              viewBox="0 0 24 24"
+            >
+              <path
+                d="M7 10l5 5 5-5z"
+              />
+            </svg>
+            <fieldset
+              aria-hidden="true"
+              class="MuiOutlinedInput-notchedOutline css-1d3z3hw-MuiOutlinedInput-notchedOutline"
+            >
+              <legend
+                class="css-1in441m"
+              >
+                <span>
+                  From Currency
+                   
+                  *
+                </span>
+              </legend>
+            </fieldset>
+          </div>
+          <br />
+        </div>
+        <div
+          class="MuiFormControl-root MuiFormControl-fullWidth css-q8hpuo-MuiFormControl-root"
+        >
+          <label
+            class="MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-outlined MuiFormLabel-root MuiFormLabel-colorPrimary MuiFormLabel-filled css-1sumxir-MuiFormLabel-root-MuiInputLabel-root"
+            data-shrink="true"
+            id="exchange-form-to"
+          >
+            To Currency
+          </label>
+          <div
+            class="MuiOutlinedInput-root MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-formControl  css-1yk1gt9-MuiInputBase-root-MuiOutlinedInput-root-MuiSelect-root"
+            data-testid="to-currency"
+            required=""
+          >
+            <div
+              aria-expanded="false"
+              aria-haspopup="listbox"
+              aria-labelledby="exchange-form-to exchange-form-to"
+              class="MuiSelect-select MuiSelect-outlined MuiOutlinedInput-input MuiInputBase-input css-11u53oe-MuiSelect-select-MuiInputBase-input-MuiOutlinedInput-input"
+              id="exchange-form-to"
+              role="button"
+              tabindex="0"
+            >
+              USD
+            </div>
+            <input
+              aria-hidden="true"
+              class="MuiSelect-nativeInput css-yf8vq0-MuiSelect-nativeInput"
+              required=""
+              tabindex="-1"
+              value="USD"
+            />
+            <svg
+              aria-hidden="true"
+              class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium MuiSelect-icon MuiSelect-iconOutlined css-hfutr2-MuiSvgIcon-root-MuiSelect-icon"
+              data-testid="ArrowDropDownIcon"
+              focusable="false"
+              viewBox="0 0 24 24"
+            >
+              <path
+                d="M7 10l5 5 5-5z"
+              />
+            </svg>
+            <fieldset
+              aria-hidden="true"
+              class="MuiOutlinedInput-notchedOutline css-1d3z3hw-MuiOutlinedInput-notchedOutline"
+            >
+              <legend
+                class="css-1in441m"
+              >
+                <span>
+                  To Currency
+                   
+                  *
+                </span>
+              </legend>
+            </fieldset>
+          </div>
+          <br />
+        </div>
+        <div
+          class="MuiFormControl-root MuiFormControl-fullWidth css-1w4vsez-MuiFormControl-root"
+        >
+          <label
+            class="MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-outlined MuiFormLabel-root MuiFormLabel-colorPrimary css-1sumxir-MuiFormLabel-root-MuiInputLabel-root"
+            data-shrink="true"
+            for="amount"
+          >
+            Amount
+          </label>
+          <div
+            class="MuiInput-root MuiInput-underline MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-formControl MuiInputBase-adornedStart css-1ptx2yq-MuiInputBase-root-MuiInput-root"
+            data-testid="enteredValue"
+            required=""
+          >
+            <div
+              class="MuiInputAdornment-root MuiInputAdornment-positionStart MuiInputAdornment-outlined MuiInputAdornment-sizeMedium css-ittuaa-MuiInputAdornment-root"
+            >
+              <p
+                class="MuiTypography-root MuiTypography-body1 css-1pnmrwp-MuiTypography-root"
+              >
+                $
+              </p>
+            </div>
+            <input
+              aria-invalid="false"
+              class="MuiInput-input MuiInputBase-input MuiInputBase-inputAdornedStart css-1x51dt5-MuiInputBase-input-MuiInput-input"
+              id="amount"
               placeholder="value in BRL format"
               required=""
               type="number"
+              value=""
             />
           </div>
         </div>
       </div>
       <button
-        class="btn btn-primary"
+        class="MuiButton-root MuiButton-primary MuiButton-primaryPrimary MuiButton-sizeMedium MuiButton-primarySizeMedium MuiButtonBase-root  css-1w1rijm-MuiButtonBase-root-MuiButton-root"
         data-testid="convert"
+        tabindex="0"
         type="button"
         value="convert"
       >
         Convert
+        <span
+          class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+        />
       </button>
        
     </form>
